@@ -1,5 +1,6 @@
 import { Editor } from '@monaco-editor/react';
 import { UserButton } from '@clerk/clerk-react';
+import Terminal from './Terminal';
 
 interface EditorRoomProps {
   roomId: string;
@@ -54,6 +55,17 @@ const EditorRoom = ({
       <section className='flex-1 flex flex-col relative'>
         <header className="h-14 bg-[#121214] border-b border-zinc-800 flex items-center justify-between px-8">
           <div className="flex items-center gap-6">
+             {/* Back to Dashboard Button */}
+             <button 
+               onClick={() => window.location.search = ""}
+               className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 text-[10px] font-black uppercase tracking-widest transition-all group"
+             >
+               <span className="text-xs transition-transform group-hover:-translate-x-1 duration-200">←</span>
+               Dashboard
+             </button>
+             
+             <div className="h-4 w-[1px] bg-zinc-800"></div>
+
              <div className="flex items-center gap-3">
                <span className="text-[10px] text-zinc-500 font-black tracking-widest">LANG:</span>
                <select 
@@ -64,28 +76,37 @@ const EditorRoom = ({
                   {languages.map((lang) => <option key={lang} value={lang}>{lang.toUpperCase()}</option>)}
                </select>
              </div>
+             
              <div className="h-4 w-[1px] bg-zinc-800"></div>
              <span className="text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-widest">Room ID: {roomId}</span>
           </div>
           <UserButton />
         </header>
 
-        <div className="flex-1">
-          <Editor
-            height="100%"
-            theme='vs-dark'
-            language={selectedLang}
-            onMount={handleMount}
-            options={{
-              fontSize: 14,
-              minimap: { enabled: false },
-              padding: { top: 20 },
-              fontFamily: "'Fira Code', monospace",
-              cursorBlinking: "smooth",
-              renderWhitespace: "selection",
-              smoothScrolling: true,
-            }}
-          />
+        <div className="flex-1 flex flex-col min-h-0">
+          <div className="flex-[2] min-h-0">
+            <Editor
+              height="100%"
+              theme='vs-dark'
+              language={selectedLang}
+              onMount={handleMount}
+              options={{
+                fontSize: 14,
+                minimap: { enabled: false },
+                padding: { top: 20 },
+                fontFamily: "'Fira Code', monospace",
+                cursorBlinking: "smooth",
+                renderWhitespace: "selection",
+                smoothScrolling: true,
+              }}
+            />
+          </div>
+          <div className="flex-[1] min-h-0 relative">
+            <div className="absolute top-0 left-0 px-4 py-1 text-[10px] font-black uppercase tracking-widest text-zinc-500 bg-[#0a0a0c] z-10 border-b border-zinc-800">
+              Terminal
+            </div>
+            <Terminal roomId={roomId} />
+          </div>
         </div>
 
         <footer className='h-6 bg-indigo-600 px-6 flex items-center justify-between text-[10px] font-black uppercase tracking-[0.2em]'>

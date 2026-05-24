@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --watch index.ts",
-    "start": "bun index.ts"
+    "dev": "bun --watch server.ts",
+    "start": "bun server.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -19,6 +19,7 @@
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "mongoose": "^9.6.1",
+    "node-pty": "^1.1.0",
     "nodemon": "^3.1.14",
     "socket.io": "^4.8.3",
     "y-socket.io": "^1.1.3"

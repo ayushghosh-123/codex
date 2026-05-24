@@ -1,0 +1,15 @@
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+ 
+  server:
+    build: .
+    ports:
+      - "3000:3000"  # Changed from 4000:3000
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/learning
+    depends_on:
+      - mongodb

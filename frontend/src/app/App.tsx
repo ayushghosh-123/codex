@@ -67,9 +67,10 @@ function App() {
     if (!id || !user) return;
     try {
       await axios.post(`${API_BASE}/rooms/join`, { clerkId: user.id, roomId: id, language: lang });
-      window.location.search = `?room=${id}&lang=${lang}`;
     } catch (err) {
       console.error("Join log error", err);
+    } finally {
+      window.location.search = `?room=${id}&lang=${lang}`;
     }
   };
 

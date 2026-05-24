@@ -12,7 +12,6 @@ interface DashboardProps {
 }
 
 const Dashboard = ({ 
-  user, 
   history, 
   roomId, 
   setRoomId, 
